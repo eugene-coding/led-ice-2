@@ -1,0 +1,66 @@
+﻿@page
+@model LedIce.Pages.Contacts.IndexModel
+
+<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab3d5dd9eed62d25c625724c51f7c943981b1e3465560759cbb7aaa1fe7aabf93&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+
+<div class="container">
+
+    <section>
+        <h2>Обратная связь</h2>
+
+        <form>
+
+            <div class="row">
+
+                <div class="col-md-7 d-md-flex flex-column">
+                    <label class="form-label" asp-for="Input.Message">Сообщение</label>
+                    <textarea required class="form-control h-100" asp-for="Input.Message"></textarea>
+                    <span asp-validation-for="Input.Message"></span>
+                </div>
+
+                <div class="col-md-5">
+
+                    <p>
+                        <label class="form-label" asp-for="Input.Name">Имя</label>
+                        <input required class="form-control" asp-for="Input.Name" />
+                        <span asp-validation-for="Input.Name"></span>
+                    </p>
+
+                    <p>
+                        <label class="form-label" asp-for="Input.Phone">Телефон</label>
+                        <input required class="form-control" asp-for="Input.Phone" />
+                        <span asp-validation-for="Input.Phone"></span>
+                    </p>
+
+                    <p class="mb-0">
+                        <label class="form-label" asp-for="Input.Email">Почта</label>
+                        <input class="form-control" asp-for="Input.Email" />
+                        <span asp-validation-for="Input.Email"></span>
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p>
+                <div>
+                    <input required class="form-check-input" asp-for="Input.Agreed" />
+                    <label class="form-check-label" asp-for="Input.Agreed">Я согласен на <a>обработку персональных данных</a></label>
+                </div>
+
+                <span asp-validation-for="Input.Agreed"></span>
+            </p>
+
+            <button class="btn btn-primary" type="submit">Отправить</button>
+            <button class="btn btn-secondary" type="reset">Сбросить</button>
+
+        </form>
+
+    </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/jquery.slim.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}
