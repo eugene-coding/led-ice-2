@@ -1,6 +1,10 @@
+using LedIce.Data;
+
+using Microsoft.EntityFrameworkCore;
+
 namespace LedIce;
 
-public class Program
+public static class Program
 {
     public static void Main(string[] args)
     {
@@ -8,6 +12,8 @@ public class Program
 
         builder.Services.AddRazorPages();
         builder.Services.AddLocalization();
+
+        ConfigureDbContext(builder);
 
         var app = builder.Build();
 
@@ -27,5 +33,25 @@ public class Program
         app.MapRazorPages();
 
         app.Run();
+    }
+
+    private static void ConfigureDbContext(WebApplicationBuilder builder)
+    {
+        builder.Services.AddDbContext<Context>(options =>
+        {
+            var connectionString = builder.Configuration["ConnectionString"];
+            var serverVersion = ServerVersion.AutoDetect(connectionString);
+
+            options.UseMySql(connectionString, serverVersion, options =>
+            {
+                options.EnableRetryOnFailure();
+            });
+
+            if (builder.Environment.IsDevelopment())
+            {
+                options.EnableDetailedErrors()
+                .EnableSensitiveDataLogging();
+            }
+        });
     }
 }
