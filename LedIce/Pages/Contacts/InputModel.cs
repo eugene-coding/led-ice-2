@@ -20,4 +20,13 @@ public sealed class InputModel
 
     [Required]
     public bool Agreed { get; set; }
+
+    public void Clear()
+    {
+        Name = string.Empty;
+        Phone = string.Empty;
+        Email = string.Empty;
+        Message = string.Empty;
+        Agreed = false;
+    }
 }

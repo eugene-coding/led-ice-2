@@ -1,4 +1,5 @@
 using LedIce.Data;
+using LedIce.Settings.Mail;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +16,16 @@ public static class Program
 
         ConfigureDbContext(builder);
 
+        builder.Services.AddScoped<MailService>();
+
         var app = builder.Build();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+
+            SeedData.Initialize(services);
+        }
 
         if (!app.Environment.IsDevelopment())
         {

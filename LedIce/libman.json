@@ -28,7 +28,15 @@
       "library": "jquery@3.6.1",
       "destination": "wwwroot/lib/jquery/",
       "files": [
-        "jquery.slim.min.js"
+        "jquery.min.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery-ajax-unobtrusive@3.2.6",
+      "destination": "wwwroot/lib/jquery-ajax-unobtrusive/",
+      "files": [
+        "jquery.unobtrusive-ajax.min.js"
       ]
     }
   ]
